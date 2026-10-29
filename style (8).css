@@ -1,0 +1,213 @@
+/* ==========================================================
+   PlayStation Access Controller · Hoja de estilos única
+   Pensada para accesibilidad: tipografía legible, contraste alto,
+   foco visible, zoom, modo oscuro, movimiento reducido y contraste forzado.
+   ========================================================== */
+@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap");
+
+:root {
+  --fondo: #fbf8f1;
+  --texto: #14213d;
+  --suave: #33415c;
+  --enlace: #0b4fb0;
+  --enlace-h: #083a85;
+  --hero: #e3edfc;
+  --destacada: #dff3ec;
+  --tarjeta: #ffffff;
+  --tarjeta-2: #eef2f8;
+  --linea: #8fa2bf;
+  --menu: #14213d;
+  --cab: #14213d;
+  --foco-in: #14213d;
+  --foco-out: #ffb800;
+  --acento: #0b4fb0;
+  --fuente: "Atkinson Hyperlegible", Verdana, Tahoma, "Segoe UI", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fondo: #0f1729;
+    --texto: #eef2fa;
+    --suave: #c5d0e6;
+    --enlace: #9cc2ff;
+    --enlace-h: #c7dcff;
+    --hero: #16213a;
+    --destacada: #10322f;
+    --tarjeta: #18233b;
+    --tarjeta-2: #1f2d4a;
+    --linea: #5a6e92;
+    --menu: #070d1b;
+    --cab: #2a3a5e;
+    --foco-in: #ffffff;
+    --acento: #9cc2ff;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  font-family: var(--fuente);
+  font-size: 1.2rem;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+  word-spacing: 0.06em;
+  color: var(--texto);
+  background: var(--fondo);
+  text-align: left;
+}
+
+h1, h2, h3 { font-family: var(--fuente); font-weight: 700; line-height: 1.25; margin: 0 0 0.6em; }
+h1 { font-size: clamp(2.3rem, 6vw, 3.8rem); }
+h2 { font-size: clamp(1.7rem, 3.5vw, 2.3rem); }
+h3 { font-size: 1.3rem; margin-top: 1.6em; }
+h2::before {
+  content: ""; display: block; width: 4rem; height: 0.4rem; margin-bottom: 0.8rem;
+  border-radius: 0.4rem; background: var(--acento);
+}
+
+p, li, dd { max-width: 65ch; }
+p { margin: 0 0 1.1em; }
+strong { font-weight: 700; }
+
+a { color: var(--enlace); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.22em; }
+a:hover { color: var(--enlace-h); text-decoration-thickness: 4px; }
+a:focus-visible, :focus-visible {
+  outline: 3px solid var(--foco-in); outline-offset: 2px;
+  box-shadow: 0 0 0 6px var(--foco-out); border-radius: 4px;
+}
+
+img { max-width: 100%; height: auto; }
+
+/* ---------- Saltar y texto solo para lectores ---------- */
+.salto {
+  position: absolute; left: 1rem; top: -5rem; z-index: 30;
+  background: #ffb800; color: #14213d; font-weight: 700; padding: 0.8rem 1.2rem; border-radius: 8px;
+}
+.salto:focus { top: 1rem; }
+.solo-lector {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ---------- Menú ---------- */
+.menu {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--menu); border-bottom: 4px solid #ffb800;
+}
+.menu ul {
+  list-style: none; margin: 0 auto; padding: 0.4rem 1rem; max-width: 76rem;
+  display: flex; flex-wrap: wrap; gap: 0.2rem 0.5rem;
+}
+.menu li { max-width: none; margin: 0; }
+.menu a {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 0.9rem;
+  color: #ffffff; text-decoration: none; font-size: 0.95rem; font-weight: 700; border-radius: 999px;
+}
+.menu a:hover { background: #ffffff; color: #14213d; }
+
+/* ---------- Portada ---------- */
+.cabecera { background: var(--hero); }
+.portada {
+  max-width: 76rem; margin: 0 auto; padding: 3.5rem 1.25rem 4rem;
+  display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: center;
+}
+.asignatura { font-weight: 700; color: var(--suave); margin-bottom: 1rem; }
+.lema { font-size: 1.5rem; font-weight: 700; color: var(--acento); }
+.portada-imagen { margin: 0; }
+.portada-imagen img {
+  display: block; width: 100%; max-width: 26rem; aspect-ratio: 1 / 1; object-fit: cover;
+  margin: 0 auto; border-radius: 50%; border: 10px solid #ffb800; background: #ffffff;
+}
+.portada-imagen figcaption { text-align: center; }
+
+/* ---------- Secciones ---------- */
+main section { padding: 4rem max(1.25rem, calc((100% - 76rem) / 2)); }
+.destacada { background: var(--destacada); }
+
+ul, ol { padding-left: 1.4rem; }
+li { margin-bottom: 0.7rem; }
+
+.beneficios { list-style: none; padding: 0; margin-top: 1.5rem; }
+.beneficios li {
+  background: var(--tarjeta); border: 2px solid var(--linea); border-left: 8px solid var(--acento);
+  border-radius: 12px; padding: 1rem 1.2rem; max-width: 65ch;
+}
+
+.rejilla-dos { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1.5rem 0; }
+.rejilla-dos > div {
+  background: var(--tarjeta); border: 2px solid var(--linea); border-top: 8px solid var(--acento);
+  border-radius: 18px; padding: 1.5rem 1.7rem;
+}
+.rejilla-dos h3 { margin-top: 0; }
+
+.nota {
+  margin-top: 2rem; padding: 1.2rem 1.5rem; background: var(--menu); color: #ffffff;
+  border-radius: 14px; font-size: 1.15rem; max-width: 65ch;
+}
+
+/* ---------- Tablas ---------- */
+table {
+  border-collapse: collapse; width: 100%; max-width: 56rem; margin-top: 2rem;
+  background: var(--tarjeta); font-size: 1.05rem;
+}
+caption { text-align: left; font-weight: 700; font-size: 1.2rem; padding-bottom: 0.7rem; }
+th, td { border: 2px solid var(--linea); padding: 0.8rem 1rem; text-align: left; vertical-align: top; }
+thead th { background: var(--cab); color: #ffffff; }
+tbody th { background: var(--tarjeta-2); width: 30%; }
+
+dt { font-weight: 700; font-size: 1.2rem; margin-top: 1.5rem; color: var(--acento); }
+dd { margin: 0.3rem 0 0; }
+
+figcaption { font-size: 1rem; color: var(--suave); margin-top: 0.5rem; }
+
+.galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+.galeria figure { margin: 0; }
+.galeria img {
+  display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+  border-radius: 14px; border: 3px solid var(--linea); background: #ffffff;
+}
+
+.enlaces li { margin-bottom: 1rem; }
+.enlaces a { font-weight: 700; }
+
+.pie { background: var(--menu); color: #e6eefb; padding: 2.5rem max(1.25rem, calc((100% - 76rem) / 2)); font-size: 1rem; }
+.pie p { max-width: 75ch; }
+.pie a { color: #ffffff; }
+
+/* ---------- Móvil y zoom alto ---------- */
+@media (max-width: 52rem), (max-height: 32rem) {
+  .menu { position: static; }
+  html { scroll-padding-top: 1rem; }
+}
+@media (max-width: 52rem) {
+  body { font-size: 1.15rem; }
+  .portada { grid-template-columns: 1fr; gap: 2rem; padding-top: 2rem; }
+  .rejilla-dos { grid-template-columns: 1fr; }
+  main section { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+}
+
+/* ---------- Preferencias del sistema ---------- */
+@media (prefers-contrast: more) {
+  :root { --fondo: #ffffff; --texto: #000000; --suave: #000000; --linea: #000000; --hero: #ffffff; --destacada: #ffffff; --enlace: #0000cc; }
+  .rejilla-dos > div, .beneficios li, table, th, td { border-color: #000000; }
+}
+@media (forced-colors: active) {
+  .rejilla-dos > div, .beneficios li, .nota, table { border: 2px solid CanvasText; }
+  h2::before { background: CanvasText; }
+}
+@media print {
+  .menu, .salto { display: none; }
+  body { background: #ffffff; color: #000000; }
+}
+
+/* ---------- Datos técnicos como lista de descripción ---------- */
+.ficha { max-width: 56rem; margin-top: 1rem; background: var(--tarjeta); border: 2px solid var(--linea); border-radius: 14px; overflow: hidden; }
+.ficha div { display: grid; grid-template-columns: 12rem 1fr; gap: 1rem; padding: 0.9rem 1.2rem; border-bottom: 2px solid var(--linea); }
+.ficha div:last-child { border-bottom: 0; }
+.ficha dt { margin: 0; font-size: 1rem; color: var(--texto); }
+.ficha dd { margin: 0; max-width: none; }
+@media (max-width: 52rem) { .ficha div { grid-template-columns: 1fr; gap: 0.2rem; } }
